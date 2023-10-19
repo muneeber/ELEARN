@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\CreatorController;
+use App\Http\Controllers\CourseModelController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -17,8 +17,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/dashboard', function () {return view('home');})->name('dashboard');
+Route::get('/', function () {return view('home');});
 Route::get('/home',[HomeController::class,'show'])->name('home');
-Route::get('/addcourse', [CreatorController::class,'addcourse'])->name('addcourse');
+Route::get('/addcourse', [CourseModelController::class,'AddCourse'])->name('addcourse');
+Route::post('/addcourse', [CourseModelController::class,'StoreCourse'])->name('addcourse');
 
 
 // Route::get('/dashboard', function () {

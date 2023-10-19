@@ -1,10 +1,5 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __("Creator's Dashboard") }}
-        </h2>
-    </x-slot>
-
+@extends('creator.layout');
+@section('content')
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -13,25 +8,23 @@
                         <div class="title-font text-4xl font-medium text-gray-900 ">Your Courses</div>
                         <div class="container px-5 py-11 mx-auto">
                             <div class="flex flex-wrap -m-4">
-                               @foreach ($courses as $course)
-                                   
-                               
                                 <div class="p-4 md:w-1/3">
                                     <div
                                         class="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
                                         <img class="lg:h-48 md:h-36 w-full object-cover object-center"
-                                            src="{{asset('images/'. $course->CourseImage)   }}" alt="blog">
+                                            src="https://dummyimage.com/720x400" alt="blog">
                                         <div class="p-6">
                                             <h2
                                                 class="tracking-widest text-xs title-font font-medium uppercase text-gray-400 mb-1">
                                                 Course</h2>
-                                            <h1 class="title-font text-lg font-medium text-gray-900 mb-3">
-                                                {{ $course->CourseName }}
+                                            <h1 class="title-font text-lg font-medium text-gray-900 mb-3">The Catalyzer
                                             </h1>
-                                            <p class="leading-relaxed mb-3">{{ $course->Description }}</p>
+                                            <p class="leading-relaxed mb-3">Photo booth fam kinfolk cold-pressed
+                                                sriracha leggings jianbing microdosing tousled waistcoat.</p>
                                             <div class="flex items-center flex-wrap ">
                                                 <a
-                                                    class="text-white p-2 text-center  rounded bg-blue-700 inline-flex items-center md:mb-2 lg:mb-0">Add Content
+                                                    class="text-white p-2 text-center  rounded bg-blue-700 inline-flex items-center md:mb-2 lg:mb-0">Enroll
+                                                    Now
                                                     <svg class="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor"
                                                         stroke-width="2" fill="none" stroke-linecap="round"
                                                         stroke-linejoin="round">
@@ -61,7 +54,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                @endforeach
 
 
                                 <a href="{{ route('addcourse') }}"
@@ -79,7 +71,7 @@
                                                 New Course</h2>
                                             <h1
                                                 class="title-font text-4xl font-medium hover:text-gray-500  capitalize mb-3">
-                                                Make <br> a new Course
+                                                Upload <br> a new Course
                                             </h1>
                                         </div>
                                     </div>
@@ -92,6 +84,4 @@
         </div>
         </section>
     </div>
-  
- 
-</x-app-layout>
+@endsection
