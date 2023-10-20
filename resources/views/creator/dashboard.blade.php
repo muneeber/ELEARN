@@ -30,7 +30,7 @@
                                             </h1>
                                             <p class="leading-relaxed mb-3">{{ $course->Description }}</p>
                                             <div class="flex items-center flex-wrap ">
-                                                <a
+                                                <a href="{{ Route('AddContent') }}"
                                                     class="text-white p-2 text-center  rounded bg-blue-700 inline-flex items-center md:mb-2 lg:mb-0">Add Content
                                                     <svg class="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor"
                                                         stroke-width="2" fill="none" stroke-linecap="round"

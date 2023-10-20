@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContentController;
 use App\Http\Controllers\CourseModelController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
@@ -22,6 +23,8 @@ Route::get('/home',[HomeController::class,'show'])->name('home');
 Route::get('/addcourse', [CourseModelController::class,'AddCourse'])->name('addcourse');
 Route::post('/addcourse', [CourseModelController::class,'StoreCourse'])->name('addcourse');
 
+Route::get('/AddContent', [ContentController::class,'AddContent'])->name('AddContent');
+Route::post('/AddContent', [ContentController::class,'StoreContent'])->name('AddContent');
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
