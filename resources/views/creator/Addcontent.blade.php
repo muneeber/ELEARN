@@ -5,10 +5,13 @@
         <script src="https://cdn.tailwindcss.com"></script>
     </head>
     {{-- Main Content div --}}
+    <form action="{{ route('AddContent') }}" method="POST" enctype="multipart/form-data">
+        @csrf
     <div class="grid grid-cols-4 grid-rows-1 mt-3 p-3 bg-[#F5F5F5] gap-4">
         <div class="col-span-3 ">
-            <div class="relative flex items-center justify-center overflow-hidden rounded-lg bg-gray-300 h-96">
-                <input type="file" name="course_image" id="course_image" class="form-input mt-1 block  " accept="image/*"
+            <div class="relative flex items-center flex-col gap-2  justify-center overflow-hidden rounded-lg bg-gray-300 h-96">
+                <h2 class="text-center font-bold text-2xl text-green-500">Upload Your Course Cover Photo Here </h2>
+                <input type="file" name="course_image" id="course_image" name="Image-course-cover" class="form-input mt-1 block  " accept="image/*"
                     required>
             </div>
             <div class="bg-white mt-1 w-full p-3 ">
@@ -33,34 +36,7 @@
                     <h1 class="text-[#001920] text-4xl font-extrabold mb-5   ">
                         Overview
                     </h1>
-                    {{-- <p class="text-justify">
-                        Are you new to PHP or need a refresher? Then this course will help you get all the fundamentals of
-                        Procedural PHP, Object Oriented PHP, MYSQLi and ending the course by building a CMS system similar
-                        to
-                        WordPress, Joomla or Drupal. Knowing PHP has allowed me to make enough money to stay home and make
-                        courses like this one for students all over the world. Being a PHP developer can allow anyone to
-                        make
-                        really good money online and offline, developing dynamic applications. Knowing PHP will allow you to
-                        build web applications, websites or Content Management systems, like WordPress, Facebook, Twitter or
-                        even Google. There is no limit to what you can do with this knowledge. PHP is one of the most
-                        important
-                        web programming languages to learn, and knowing it, will give you SUPER POWERS in the web
-                        development
-                        world and job market place. Why? Because Millions of websites and applications (the majority) use
-                        PHP.
-                        You can find a job anywhere or even work on your own, online and in places like freelancer or Odesk.
-                        You
-                        can definitely make a substantial income once you learn it. I will not bore you :) I take my courses
-                        very seriously but at the same time I try to make it fun since I know how difficult learning from an
-                        instructor with a monotone voice or boring attitude is. This course is fun, and when you need some
-                        energy to keep going, you will get it from me. My Approach Practice, practice and more practice.
-                        Every
-                        section inside this course has a practice lecture at the end, reinforcing everything with went over
-                        in
-                        the lectures. I also created a small application the you will be able to download to help you
-                        practice
-                        PHP. To top it off, we will build and awesome CMS like WordPress, Joomla or Drupal.
-                    </p> --}}
+                    
                     <textarea class="w-full" name="" id="" cols="30" rows="10">
                       Enter the Description about your course.
                     </textarea>
@@ -76,7 +52,7 @@
                             </button></div></div>
 
                     <div id="section-list">
-                      <div id="section-1">
+                      <div id="section-1" class="main">
                         <div id="accordion-collapse" data-accordion="collapse">
                             <h2 id="accordion-collapse-heading-1">
                                 <div type="button" id="button"
@@ -84,35 +60,32 @@
                                     data-accordion-target="#accordion-collapse-b  ody-2" aria-expanded="true"
                                     aria-controls="accordion-collapse-body-1">
                                     <span>   <input type="text" placeholder="Enter Your Chapter Name:" size="30" class="w-full"></span>
-                                    
+                                    <button type="button" id="add-field"
+                                    class="text-white flex capitalize bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                                    add Another Field
+                                </button>
                                   </div>
                             </h2>
                             <div id="accordion-collapse-body-2" 
                                 aria-labelledby="accordion-collapse-heading-1">
                                 <div class="border border-1 border-black">
-                                    <ul>
+                                    <ul id="field-list">
                                         <li class="flex items-center py-2 px-4 bg-[#fff] justify-between"
                                             style="transition: background-color 300ms ease-in;">
                                             <div class="flex items-center gap-2">
-                                             Upload Video :<input type="file" name="course_image" id="course_image" class="form-input mt-1 block  "
+                                             Upload Content :<input type="file" class=" w-60" name="course_image" id="course_image" class="form-input
+                                              mt-1 block  " name="course-content-1-ch-1" 
                                               accept="video/*" required>
-                                              <input type="text" name="" size="50" id="" placeholder="Enter Your Video Title">
+                                              <input type="text" name="" size="20" id="" placeholder="Enter Your Video Title">
                                             </div>
                                             <div class="flex items-center gap-2">
-                                                <div class="">07:00</div>
-                                                <div class="mb-1">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                                        viewBox="0 0 20 20">
-                                                        <path
-                                                            d="M10,20A10,10,0,1,0,0,10,10,10,0,0,0,10,20ZM8.711,4.3l5.7,5.766L8.7,15.711,7.3,14.289l4.289-4.242L7.289,5.7Z" />
-                                                    </svg>
-                                                </div>
+                                                
+                                               
                                             </div>
                                         </li>
                                     </ul>
                                 </div>
                             </div>
-                            <!-- Repeat the above structure for other sections -->
                         </div>
                       </div>
                     </div>
@@ -126,8 +99,9 @@
         {{-- SIDEBAR --}}
         <div id="sidebar" class="border">
             <div class=" flex w-full flex-col bg-white p-5 rounded    ">
-                <div class="aspect-w-16 aspect-h-9">
-                    <input type="file" name="course_image" id="course_image" class="form-input mt-1 block  "
+                <div class=" flex flex-col justify-center items-center border border-1 border-black p-3 overflow-hidden">
+                    <h2 class="text-center text-xl text-amber-500 font-blod block">Upload Your Couse Demo Video Here</h2>
+                    <input type="file"  name="course-demo" id="course_image" class="form-input my-2 h-11 w-60"
                         accept="video/*" required>
                 </div>
                 <div class="">
@@ -139,8 +113,8 @@
                         <h2 class=" mb-5 text-[#001920] text-2xl font-extrabold ">Course Features</h2>
                         <div class="">
                             <button type="button" id="add-f"
-                                class="text-white flex capitalize bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                                add Another feature
+                                class="text-white flex capitalize bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-1 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                                add feature
                             </button>
                         </div>
                     </div>
@@ -160,8 +134,7 @@
                     </h3>
                 </div>
                 <button
-                    class="rounded border-[#FF3158] p-4 bg-[#FF3158] px-6 py-2 text-lg font-extrabold text-white  focus:outline-none ">Enroll
-                    Now</button>
+                    class="rounded  p-4 bg-green-600 px-6 py-2 text-lg font-extrabold text-white  focus:outline-none " type="submit"> Submit Content</button>
             </div>
         </div>
         <script>
@@ -179,9 +152,9 @@
                 });
                 $("#add-s").click(function() {
                     const featureList = $("#section-list");
-                    const featureCount = featureList.find("li").length + 1;
+                    const featureCount = featureList.find(".main").length + 1;
                     const newFeatureInput = $(
-                      `<div id="section-`+featureCount+`">
+                      `<div id="section-`+featureCount+`" class="mt-3 main">
                         <div id="accordion-collapse" data-accordion="collapse">
                             <h2 id="accordion-collapse-heading-1">
                                 <div type="button" id="button"
@@ -189,8 +162,12 @@
                                     data-accordion-target="#accordion-collapse-b  ody-2" aria-expanded="true"
                                     aria-controls="accordion-collapse-body-1">
                                     <span>   <input type="text" placeholder="Enter Your Chapter Name:" size="30" class="w-full"></span>
-                                    <button type="button" id="add-s"
-                            class="text-white flex capitalize bg-red-600 hover:bg-red-800 focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 focus:outline-none dark:focus:ring-red-800">
+                                    <button type="button" id="add-field"
+                                    class="text-white flex capitalize bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                                    add Another Field
+                                </button>
+                                    <button type="button" id=""
+                            class="text-white delete-section flex capitalize bg-red-600 hover:bg-red-800 focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 focus:outline-none dark:focus:ring-red-800">
                             Delete
                         </button>
                                   </div>
@@ -225,9 +202,37 @@
                         );
                     featureList.append(newFeatureInput);
                 });
+                $("#add-field").click(function() {
+                    const featureList = $("#field-list");
+                    const featureCount = featureList.find("li").length + 1;
+                    const newFeatureInput = $(`
+                    <li class="flex items-center py-2 px-4 bg-[#fff] justify-between"
+                                            style="transition: background-color 300ms ease-in;">
+                                            <div class="flex items-center gap-2">
+                                             Upload Content :<input type="file" class=" w-60" name="course_image" id="course_image" class="form-input mt-1 block  "
+                                              accept="video/*" required>
+                                              <input type="text" name="" size="20" id="" placeholder="Enter Your Video Title">
+                                            </div>
+                                            <div class="flex items-center gap-2">
+                                                <button class="px-2 delete-field p-1 mx-2 bg-red-500 text-white outline rounded outline-red-800">Delete</button>
+                                                
+                                            </div>
+                                        </li>
+                    `);
+                    console.log('add field Section');
+                    featureList.append(newFeatureInput);
+                });
 
                 // Add a click event handler for the delete button
                 $(document).on("click", ".delete-button", function() {
+                    $(this).closest("li").remove();
+                });
+                $(document).on("click", ".delete-section", function() {
+                    console.log('Delete Section');
+                    $(this).closest(".main").remove();
+                });
+                $(document).on("click", ".delete-field", function() {
+                    console.log('Delete field');
                     $(this).closest("li").remove();
                 });
             });
@@ -381,6 +386,7 @@
         });
     </script>
     {{-- Footer --}}
+</form>
 @endsection
 {{-- <button type="button" id=""
                                 class="text-white flex capitalize bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
